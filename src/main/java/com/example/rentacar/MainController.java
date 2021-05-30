@@ -32,8 +32,17 @@ public class MainController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        Car n = new Car();
+        CarData n = new CarData();
         n.setCode(code);
+        n.setBrand("Volkswagen");
+        n.setModel("Polo");
+        n.setNumberChairs(5);
+        n.setAutomatic(false);
+        n.setNrBigLuggage(0);
+        n.setNrSmallLuggage(1);
+        n.setLocation("Bucuresti Otopeni Aeroport");
+        n.setPricePerDay(102);
+        n.setAvailable(true);
         carRepository.save(n);
         return "Saved";
     }
@@ -70,8 +79,9 @@ public class MainController {
         return "user created";
     }
 
-    @GetMapping(path="/all")
-    public @ResponseBody Iterable<Car> getAllCars() {
+    @CrossOrigin
+    @GetMapping(path="/cars", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Iterable<CarData> getAllCars() {
         // This returns a JSON or XML with the users
         return carRepository.findAll();
     }
