@@ -47,6 +47,26 @@ public class MainController {
         return "Saved";
     }
 
+  @PostMapping(path="/add") // Map ONLY POST Requests
+  public @ResponseBody String addNewOrder (@RequestBody Map<String, String> order) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+
+    CarData n = new CarData();
+    n.setCode(code);
+    n.setBrand("Volkswagen");
+    n.setModel("Polo");
+    n.setNumberChairs(5);
+    n.setAutomatic(false);
+    n.setNrBigLuggage(0);
+    n.setNrSmallLuggage(1);
+    n.setLocation("Bucuresti Otopeni Aeroport");
+    n.setPricePerDay(102);
+    n.setAvailable(true);
+    carRepository.save(n);
+    return "Saved";
+  }
+
     @CrossOrigin
     @PostMapping(path="/login", produces = MediaType.APPLICATION_JSON_VALUE) // Map ONLY POST Requests
     public @ResponseBody Map<String, String> loginUser (@RequestBody Map<String, String> credentials) {
