@@ -66,9 +66,12 @@ public class MainController {
         System.out.println(jwtTokenUtil.getEmailFromToken(token));
         UserData user = userRepository.findUserDataByEmail(jwtTokenUtil.getEmailFromToken(token));
         newOrderData.setUserId(user.getId());
+        CarData car = carRepository.findCarDataById(newOrderData.getCarId());
+        car.setAvailable(false);
         orderRepository.save(newOrderData);
         user.setOrders(user.getOrders() + newOrderData.getId().toString());
         userRepository.save(user);
+        carRepository.save(car);
         return "Saved";
       }
 
