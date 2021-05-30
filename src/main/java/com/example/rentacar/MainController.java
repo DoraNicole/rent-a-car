@@ -49,12 +49,12 @@ public class MainController {
         return "Saved car";
     }
 
-  @PostMapping(path="/add") // Map ONLY POST Requests
+  @PostMapping(path="/addOrder") // Map ONLY POST Requests
   public @ResponseBody String addNewOrder (@RequestBody Map<String, String> order) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
 
-    CarData n = new CarData();
+    /*CarData n = new CarData();
     n.setCode(code);
     n.setBrand("Volkswagen");
     n.setModel("Polo");
@@ -65,7 +65,7 @@ public class MainController {
     n.setLocation("Bucuresti Otopeni Aeroport");
     n.setPricePerDay(102);
     n.setAvailable(true);
-    carRepository.save(n);
+    carRepository.save(n);*/
     return "Saved";
   }
 
