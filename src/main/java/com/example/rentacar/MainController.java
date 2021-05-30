@@ -54,16 +54,14 @@ public class MainController {
     }
 
     @CrossOrigin
-      @PostMapping(path="/addOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
-      public @ResponseBody String addNewOrder (@RequestBody Map<String, String> order) {
+    @PostMapping(path="/addOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String addNewOrder (@RequestBody Map<String, String> order) {
         OrderData newOrderData = new OrderData();
-        System.out.println(order.get("carId"));
         newOrderData.setCarId(Integer.parseInt(order.get("carId")));
         newOrderData.setPickUpDate(Date.valueOf(order.get("pickUpDate")));
         newOrderData.setReturnDate(Date.valueOf(order.get("returnDate")));
         newOrderData.setPrice(Integer.parseInt(order.get("price")));
         newOrderData.setLocation(order.get("location"));
-        System.out.println(jwtTokenUtil.getEmailFromToken(token));
         UserData user = userRepository.findUserDataByEmail(jwtTokenUtil.getEmailFromToken(token));
         newOrderData.setUserId(user.getId());
         CarData car = carRepository.findCarDataById(newOrderData.getCarId());
@@ -73,7 +71,7 @@ public class MainController {
         userRepository.save(user);
         carRepository.save(car);
         return "Saved";
-      }
+    }
 
     @CrossOrigin
     @PostMapping(path="/login", produces = MediaType.APPLICATION_JSON_VALUE) // Map ONLY POST Requests
