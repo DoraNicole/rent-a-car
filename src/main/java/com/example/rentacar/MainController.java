@@ -4,10 +4,12 @@ import com.example.rentacar.registration.JwtTokenUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class MainController {
         Car n = new Car();
         n.setCode(code);
         carRepository.save(n);
-        return "Saved";
+        return "Saved car";
     }
 
     @CrossOrigin
@@ -62,11 +64,16 @@ public class MainController {
         UserData newUser = new UserData();
         newUser.setEmail(data.get("email"));
         newUser.setPassword(data.get("password"));
-        newUser.setFirstName(data.get("first_name"));
-        newUser.setLastName(data.get("last_name"));
+        newUser.setFirstName(data.get("firstName"));
+        newUser.setLastName(data.get("lastName"));
         newUser.setOrders("");
         newUser.setPhone(data.get("phone"));
-        userRepository.save(newUser);
+        try {
+            userRepository.save(newUser);
+        } catch (DataIntegrityViolationException e) {
+            return "Exista deja un cont cu email-ul furnizat!";
+        }
+
         return "user created";
     }
 
