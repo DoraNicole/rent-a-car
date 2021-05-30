@@ -1,6 +1,12 @@
 package com.example.rentacar;
 
+import com.example.rentacar.entity.CarData;
+import com.example.rentacar.entity.OrderData;
+import com.example.rentacar.entity.UserData;
 import com.example.rentacar.registration.JwtTokenUtil;
+import com.example.rentacar.repository.CarRepository;
+import com.example.rentacar.repository.OrderRepository;
+import com.example.rentacar.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
@@ -93,10 +99,10 @@ public class MainController {
         try {
             userRepository.save(newUser);
         } catch (DataIntegrityViolationException e) {
-            return "Exista deja un cont cu email-ul furnizat!";
+            return "There is already an existing user with the email provided!";
         }
 
-        return "Utilizatotul a fost creat cu succes!";
+        return "The account was successfully created! Refresh the page!";
     }
 
     @CrossOrigin

@@ -1,4 +1,4 @@
-package com.example.rentacar;
+package com.example.rentacar.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

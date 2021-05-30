@@ -1,6 +1,6 @@
 package com.example.rentacar.registration;
 
-import com.example.rentacar.UserData;
+import com.example.rentacar.entity.UserData;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;

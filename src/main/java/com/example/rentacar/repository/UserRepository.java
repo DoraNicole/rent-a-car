@@ -1,5 +1,6 @@
-package com.example.rentacar;
+package com.example.rentacar.repository;
 
+import com.example.rentacar.entity.UserData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
