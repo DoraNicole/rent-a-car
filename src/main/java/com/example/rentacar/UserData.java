@@ -3,30 +3,23 @@ package com.example.rentacar;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
 public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
     private Integer id;
 
-    @Column(name="firstName")
     private String firstName;
 
-    @Column(name="lastName")
     private String lastName;
 
-    @Column(name="email")
+    @Column(unique = true)
     private String email;
 
-    @Column(name="user_password")
     private String password;
 
-    @Column(name="phone")
     private String phone;
 
-    @Column(name="orders")
     private String orders;
 
     public Integer getId() {
@@ -61,6 +54,14 @@ public class UserData {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -77,11 +78,4 @@ public class UserData {
         this.orders = orders;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -43,22 +43,31 @@ public class MainController {
     public @ResponseBody Map<String, String> loginUser (@RequestBody Map<String, String> credentials) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        System.out.println(credentials);
-
-//        UserData newUser = new UserData();
-//        newUser.setEmail("tilica_dora@yahoo.com");
-//        newUser.setPassword("dora123");
-//        newUser.setFirstName("dora");
-//        newUser.setLastName("nico");
-//        newUser.setOrders("");
-//        newUser.setPhone("1234567891");
-//        userRepository.save(newUser);
         UserData user = userRepository.findUserDataByEmailAndPassword(
                 credentials.get("email"), credentials.get("password"));
+        System.out.println(user);
         String token = jwtTokenUtil.generateToken(user);
         Map<String, String> ans = new HashMap<>();
         ans.put("token", token);
         return ans;
+    }
+
+    @CrossOrigin
+    @PostMapping(path="/register") // Map ONLY POST Requests
+    public @ResponseBody String registerUser (@RequestBody Map<String, String> data) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        System.out.println(data);
+
+        UserData newUser = new UserData();
+        newUser.setEmail(data.get("email"));
+        newUser.setPassword(data.get("password"));
+        newUser.setFirstName(data.get("first_name"));
+        newUser.setLastName(data.get("last_name"));
+        newUser.setOrders("");
+        newUser.setPhone(data.get("phone"));
+        userRepository.save(newUser);
+        return "user created";
     }
 
     @GetMapping(path="/all")
