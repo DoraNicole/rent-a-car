@@ -23,5 +23,71 @@ public class OrderData {
 
   private Integer price;
 
+  private String location;
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Integer getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Integer userId) {
+    this.userId = userId;
+  }
+
+  public Integer getCarId() {
+    return carId;
+  }
+
+  public void setCarId(Integer carId) {
+    this.carId = carId;
+  }
+
+  public Date getPickUpDate() {
+    return pickUpDate;
+  }
+
+  public void setPickUpDate(Date pickUpDate) {
+    this.pickUpDate = pickUpDate;
+  }
+
+  public Date getReturnDate() {
+    return returnDate;
+  }
+
+  public void setReturnDate(Date returnDate) {
+    this.returnDate = returnDate;
+  }
+
+  public Integer getPrice() {
+    return price;
+  }
+
+  public void setPrice(Integer price) {
+    this.price = price;
+  }
+
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  public boolean isConfirmed() {
+    return confirmed;
+  }
+
+  public void setConfirmed(boolean confirmed) {
+    this.confirmed = confirmed;
+  }
+
   private boolean confirmed;
 }
