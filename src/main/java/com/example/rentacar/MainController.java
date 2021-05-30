@@ -30,26 +30,26 @@ public class MainController {
     }
 
     @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser (@RequestParam String code) {
+    public @ResponseBody String addNewCar (@RequestBody Map<String, String> carData) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
+//        System.out.println(carData.get("model"));
         CarData n = new CarData();
-        n.setCode(code);
-        n.setBrand("Volkswagen");
-        n.setModel("Polo");
-        n.setNumberChairs(5);
-        n.setAutomatic(false);
-        n.setNrBigLuggage(0);
-        n.setNrSmallLuggage(1);
-        n.setLocation("Bucuresti Otopeni Aeroport");
-        n.setPricePerDay(102);
-        n.setAvailable(true);
+        n.setCode(carData.get("code"));
+        n.setBrand(carData.get("brand"));
+        n.setModel(carData.get("model"));
+        n.setNumberChairs(Integer.parseInt(carData.get("nrChairs")));
+        n.setAutomatic(Boolean.parseBoolean(carData.get("automatic")));
+        n.setNrBigLuggage(Integer.parseInt(carData.get("nrBigLuggage")));
+        n.setNrSmallLuggage(Integer.parseInt(carData.get("nrSmallLuggage")));
+        n.setLocation(carData.get("location"));
+        n.setPricePerDay(Integer.parseInt(carData.get("pricePerDay")));
+        n.setAvailable(Boolean.parseBoolean(carData.get("available")));
         carRepository.save(n);
         return "Saved car";
     }
 
-  @PostMapping(path="/addOrder") // Map ONLY POST Requests
+  @PostMapping(path="/addOrder", consumes = MediaType.APPLICATION_JSON_VALUE) // Map ONLY POST Requests
   public @ResponseBody String addNewOrder (@RequestBody Map<String, String> order) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
